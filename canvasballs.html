@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<style>
+#canvas-container {
+  
+  /* text-align:center; */
+}
+
+canvas {
+   display: inline;
+border:1px solid #000000;
+}
+</style>
+  <meta charset="utf-8">
+
+  <title>Flash Card Canvas</title>
+
+</head>
+
+<body>
+<div id="canvas-container">
+<canvas id="myCanvas"></canvas> 
+ </div>
+
+
+
+ <script>
+var circleX = 10;
+var circleY = 10;
+window.onload = function() {
+	canvas = document.getElementById('myCanvas');
+	canvasContext = canvas.getContext('2d');
+	var framesPerSecond = 30;
+	setInterval(function() {
+			drawEverything();
+			moveBalls();
+			callCircle();
+		}, 1000/framesPerSecond);	
+}
+
+
+
+var width = 400;
+var height = 400;
+
+function drawEverything() {
+canvas.width = width;
+canvas.height = height;
+ var ctx = canvas.getContext('2d');
+var grd = ctx.createLinearGradient(0,0,400,0);
+grd.addColorStop(0,"lightblue");
+grd.addColorStop(1,"white");
+// Fill with gradient
+ctx.fillStyle = grd;
+ctx.fillRect(0,0,width,height);
+
+//var circle1 = colorCircle(circleX, circleY, 10, "red");
+//var circle2 = colorCircle(circleX + 90, circleY, 20, "green"); }
+var circles = [{
+centerX: 20,
+centerY: 20,
+radius: 10,
+drawColor: "red",
+xVelo: 5,
+yVelo: 4
+}, 
+{
+centerX: 50,
+centerY: 50,
+radius: 20,
+drawColor: "white",
+xVelo: 5,
+yVelo: 4
+}, 
+{
+centerX: 60,
+centerY: 70,
+radius: 5,
+drawColor: "green",
+xVelo: 5,
+yVelo: 4
+},
+{
+centerX: 100,
+centerY: 100,
+radius: 12,
+drawColor: "orange",
+xVelo: 5,
+yVelo: 4
+}];
+for (var i = 0; i < circles.length; i++) {
+canvasContext.fillStyle = circles[i].drawColor;
+	canvasContext.beginPath();
+	canvasContext.arc(circles[i].centerX, circles[i].centerY, circles[i].radius, 0,Math.PI*2,true);
+	canvasContext.fill();
+	 }
+ }
+function callCircle() {
+
+	for (var i = 0; i < circles.length; i++) {
+	circles[i].circleX = circles[i].circleX + circles[i].xVelo;
+	circles[i].circleY = circles[i].circleY + circles[i].yVelo;
+}
+}
+
+
+//function colorCircle(centerX, centerY, radius, drawColor) {
+//	canvasContext.fillStyle = drawColor;
+//	canvasContext.beginPath();
+//	canvasContext.arc(centerX, centerY, radius, 0,Math.PI*2,true);
+//	canvasContext.fill();
+	
+//}
+
+var count = 0;
+
+
+
+function moveBalls() {
+//for (var i = 0; i < circles.length; i++) {
+//circles[i].circleX = circles[i].circleX + circles[i].xVelo;
+//circles[i].circleY = circles[i].circleY + yVelo;
+//if (circles[i].circleX > 400 || circles[i].circleX < 0) {
+//changeVeloX();
+//}
+//if (circles[i].circleY > 400 || circles[i].circleY < 0) {
+//changeVeloY();
+//}}
+	
+}
+
+
+function changeVeloX() {
+xVelo = -xVelo;
+}
+function changeVeloY() {
+yVelo = -yVelo;
+}
+
+
+  </script>
+</body>
+</html>
